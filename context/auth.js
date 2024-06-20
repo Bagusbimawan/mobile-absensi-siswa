@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Alert } from "react-native";
 import { create } from "zustand";
 
 export const useAuth = create((set) => ({
@@ -8,7 +9,7 @@ export const useAuth = create((set) => ({
   nama:"",
   login: async (username, password) => {
     try {
-      const response = await axios.post("http://192.168.7.11:3000/login", {
+      const response = await axios.post("http://192.168.43.223:3000/login", {
         username,
         password,
       });
@@ -22,7 +23,7 @@ export const useAuth = create((set) => ({
       }
     } catch (error) {
       set({ error: "Error saat login" });
-      console.error("Error saat login:", "Data Tidak ditemukan");
+      Alert.alert("Data tidak ","Ditemukan", [{text:"ok"}])
     }
   },
 

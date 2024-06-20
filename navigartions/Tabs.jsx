@@ -2,7 +2,6 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screen/tabs/home";
 import History from "../screen/tabs/history";
-import Activity from "../screen/tabs/activity";
 import {
   Feather,
   MaterialCommunityIcons,
@@ -31,8 +30,8 @@ const Tabs = () => {
             }),
             marginBottom: 5,
             color: Platform.select({
-              ios: "purple",
-              android: "blue",
+              ios: "black",
+              android: "black",
             }),
           },
           tabBarIconStyle: {
@@ -45,15 +44,7 @@ const Tabs = () => {
           component={Home}
           options={{
             headerShown: false,
-            tabBarIcon: () => <MaterialIcons name="home" size={32} />,
-          }}
-        />
-        <Tab.Screen
-          name="Activity"
-          component={Activity}
-          options={{
-            headerShown: false,
-            tabBarIcon: () => <Feather name="activity" size={30} />,
+            tabBarIcon: ({focused}) => <MaterialIcons name="home" size={32} color={focused ? "#6A6868" :"#D0CBCB"} />,
           }}
         />
         <Tab.Screen
@@ -61,8 +52,8 @@ const Tabs = () => {
           component={History}
           options={{
             headerShown: false,
-            tabBarIcon: () => (
-              <MaterialCommunityIcons name="history" size={26} />
+            tabBarIcon: ({focused}) => (
+              <MaterialCommunityIcons name="history" size={26} color={focused ? "#6A6868" : "#D0CBCB"}/>
             ),
           }}
         />

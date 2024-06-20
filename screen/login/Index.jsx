@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Alert } from "react-native";
 import React, { useState } from "react";
 import MyImage from "../../assets/images/teacher.png";
 import {
@@ -9,6 +9,7 @@ import { ScrollView } from "@gluestack-ui/themed";
 import MyInput from "../../components/Input";
 import MyButton from "../../components/Button";
 import { useAuth } from "../../context/auth";
+import { AntDesign } from "@expo/vector-icons";
 
 const Style = StyleSheet.create({
   image: {
@@ -25,23 +26,40 @@ const Style = StyleSheet.create({
     marginLeft: 30,
     marginTop: 10,
   },
+  icon: {
+    marginLeft: 20,
+    marginTop: 40,
+  },
 });
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [username, Setusername] = useState("");
   const [Password, setPassword] = useState("");
-  const { login,nama } = useAuth();
+  const { login } = useAuth();
 
   const handlelogin = () => {
-    login(username,Password,nama)
+    if (username && Password) {
+      login(username, Password);
+    } else {
+      Alert.alert("data", "tidak ditemukan", [{ text: "ok" }]);
+    }
   };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={Style.container}>
+        <AntDesign
+          name="arrowleft"
+          size={32}
+          color="black"
+          style={Style.icon}
+          onPress={() => navigation.goBack()}
+        />
         <Image source={MyImage} style={Style.image} />
-        <MyInput onUsernameChange={Setusername} 
-        OnPasswordChange={setPassword}/>
-        <MyButton  onPress={handlelogin}/>
+        <MyInput
+          onUsernameChange={Setusername}
+          OnPasswordChange={setPassword}
+        />
+        <MyButton onPress={handlelogin} />
       </View>
     </ScrollView>
   );
