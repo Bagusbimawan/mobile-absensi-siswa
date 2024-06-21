@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { jadwal } from "../../../data/jadwal";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-
+import axios from "axios"; 
 import {
   Input,
   InputField,
@@ -33,7 +33,32 @@ const Style = StyleSheet.create({
 });
 
 const Ingriss = ({ navigation }) => {
+  const [materi, Setmateri] = useState("");
+  const [status, setStatus] = useState(null); 
+  const [summary, setSummary] = useState(""); 
+
+  const handlePress = async () => {
+    try {
+      const response = await axios.post("http://192.168.43.223:3000/inggris", {
+        materi,
+        status,
+        summary,
+      });
+      Setmateri("");
+      setStatus(null);
+      setSummary("");
+      if (response.status === 200) {
+        Alert.alert("Data", "berhasil", [{ text: "ok" }]);
+      } else {
+        console.error("Error:", response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const schedule = jadwal[4];
+  
   return (
     <>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -85,7 +110,12 @@ const Ingriss = ({ navigation }) => {
               borderRadius={10}
               size="2xl"
             >
-              <InputField placeholder="Enter Text There" color="#464545" />
+              <InputField
+                placeholder="Enter Text There"
+                color="#464545"
+                onChangeText={Setmateri}
+                value={materi}
+              />
             </Input>
           </View>
 
@@ -101,8 +131,17 @@ const Ingriss = ({ navigation }) => {
               Status
             </Text>
 
-            <Select>
-              <SelectTrigger variant="rounded" size="md" w={250} ml={25} bgColor="#F2EDED">
+            <Select
+              onValueChange={(itemValue) => setStatus(itemValue)}
+              selectedValue={status}
+            >
+              <SelectTrigger
+                variant="rounded"
+                size="md"
+                w={250}
+                ml={25}
+                bgColor="#F2EDED"
+              >
                 <SelectInput placeholder="Select option" />
                 <SelectIcon mr="$3">
                   <Icon as={ChevronDownIcon} />
@@ -142,9 +181,21 @@ const Ingriss = ({ navigation }) => {
               bgColor="#F2EDED"
               borderRadius={15}
             >
-              <TextareaInput></TextareaInput>
+              <TextareaInput
+                onChangeText={setSummary}
+                value={summary}
+              ></TextareaInput>
             </Textarea>
-            <Button size="lg" w={250} ml={55} mt={35} variant="solid" borderRadius={50} bgColor="#75BCE4">
+            <Button
+              size="lg"
+              w={250}
+              ml={55}
+              mt={35}
+              variant="solid"
+              borderRadius={50}
+              bgColor="#75BCE4"
+              onPress={handlePress}
+            >
               <ButtonText>Done</ButtonText>
             </Button>
           </View>

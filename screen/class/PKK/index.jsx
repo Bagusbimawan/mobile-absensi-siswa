@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { jadwal } from "../../../data/jadwal";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import { Button,ButtonText } from "@gluestack-ui/themed";
+import axios from "axios"; // Pastikan axios sudah diimpor
 
 import {
   Input,
@@ -22,6 +22,8 @@ import {
   SelectItem,
   Textarea,
   TextareaInput,
+  Button,
+  ButtonText,
 } from "@gluestack-ui/themed";
 
 const Style = StyleSheet.create({
@@ -32,7 +34,32 @@ const Style = StyleSheet.create({
 });
 
 const Pkk = ({ navigation }) => {
+  const [materi, Setmateri] = useState("");
+  const [status, setStatus] = useState(null);
+  const [summary, setSummary] = useState("");
+
+  const handlePress = async () => {
+    try {
+      const response = await axios.post("http://192.168.43.223:3000/pkk", {
+        materi,
+        status,
+        summary,
+      });
+      Setmateri("");
+      setStatus(null);
+      setSummary("");
+      if (response.status === 200) {
+        Alert.alert("Data", "berhasil", [{ text: "ok" }]);
+      } else {
+        console.error("Error:", response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const schedule = jadwal[3];
+  
   return (
     <>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -84,7 +111,12 @@ const Pkk = ({ navigation }) => {
               borderRadius={10}
               size="2xl"
             >
-              <InputField placeholder="Enter Text There" color="#464545" />
+              <InputField
+                placeholder="Enter Text There"
+                color="#464545"
+                onChangeText={Setmateri}
+                value={materi}
+              />
             </Input>
           </View>
 
@@ -100,7 +132,10 @@ const Pkk = ({ navigation }) => {
               Status
             </Text>
 
-            <Select>
+            <Select
+              onValueChange={(itemValue) => setStatus(itemValue)}
+              selectedValue={status}
+            >
               <SelectTrigger
                 variant="rounded"
                 size="md"
@@ -147,7 +182,10 @@ const Pkk = ({ navigation }) => {
               bgColor="#F2EDED"
               borderRadius={15}
             >
-              <TextareaInput></TextareaInput>
+              <TextareaInput
+                onChangeText={setSummary}
+                value={summary}
+              ></TextareaInput>
             </Textarea>
             <Button
               size="lg"
@@ -157,6 +195,7 @@ const Pkk = ({ navigation }) => {
               variant="solid"
               borderRadius={50}
               bgColor="#75BCE4"
+              onPress={handlePress}
             >
               <ButtonText>Done</ButtonText>
             </Button>

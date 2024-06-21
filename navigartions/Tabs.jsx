@@ -1,13 +1,13 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screen/tabs/home";
-import History from "../screen/tabs/history";
 import {
   Feather,
   MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
 import { Platform } from "react-native";
+import Absent from "../screen/tabs/absent";
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
@@ -48,12 +48,12 @@ const Tabs = () => {
           }}
         />
         <Tab.Screen
-          name="History"
-          component={History}
+          name="Absent"
+          component={Absent}
           options={{
             headerShown: false,
             tabBarIcon: ({focused}) => (
-              <MaterialCommunityIcons name="history" size={26} color={focused ? "#6A6868" : "#D0CBCB"}/>
+              <MaterialCommunityIcons name="account" size={26} color={focused ? "#6A6868" : "#D0CBCB"}/>
             ),
           }}
         />
