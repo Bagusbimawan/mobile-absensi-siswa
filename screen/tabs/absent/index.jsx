@@ -114,7 +114,7 @@ const Absent = () => {
                 </SelectDragIndicatorWrapper>
                 <SelectItem label="Sakit" value="sakit" />
                 <SelectItem label="Hadir" value="hadir" />
-                <SelectItem label="izin" />
+                <SelectItem label="izin" value="izin" />
               </SelectContent>
             </SelectPortal>
           </Select>
