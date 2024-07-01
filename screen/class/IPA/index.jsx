@@ -37,10 +37,10 @@ const IPA = ({ navigation }) => {
   const [materi, setMateri] = useState("");
   const [status, setStatus] = useState(null);
   const [summary, setSummary] = useState("");
-
+  
   const handlePress = async () => {
     try {
-      const response = await axios.post("http://192.168.43.223:3000/ipa", {
+      const response = await axios.post("https://supabase-test-flame.vercel.app/ipa", {
         materi,
         status,
         summary,
@@ -153,7 +153,7 @@ const IPA = ({ navigation }) => {
                 </SelectDragIndicatorWrapper>
                 <SelectItem label="Sakit" value="sakit" />
                 <SelectItem label="Hadir" value="hadir" />
-                <SelectItem label="izin" />
+                <SelectItem label="izin" value="izin"/>
               </SelectContent>
             </SelectPortal>
           </Select>

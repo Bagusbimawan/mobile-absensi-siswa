@@ -29,7 +29,7 @@ const Absent = () => {
 
   const handlePress = async () => {
     try {
-      const response = await axios.post("http://192.168.43.223:3000/absen", {
+      const response = await axios.post("https://supabase-test-flame.vercel.app/absent", {
         nama,
         status,
         keterangan,

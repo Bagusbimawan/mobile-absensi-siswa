@@ -39,14 +39,17 @@ const Pai = ({ navigation }) => {
 
   const handlePress = async () => {
     try {
-      const response = await axios.post("http://192.168.43.223:3000/pendidikan_agama", {
-        materi,
-        status,
-        summary,
-      });
-      setMateri(""); // Reset input materi setelah pengiriman berhasil
-      setStatus(null); // Reset input status setelah pengiriman berhasil
-      setSummary(""); // Reset input summary setelah pengiriman berhasil
+      const response = await axios.post(
+        "https://supabase-test-flame.vercel.app/agama",
+        {
+          materi,
+          status,
+          summary,
+        }
+      );
+      setMateri("");
+      setStatus(null);
+      setSummary("");
       if (response.status === 200) {
         Alert.alert("Data", "berhasil", [{ text: "ok" }]);
       } else {
@@ -56,7 +59,7 @@ const Pai = ({ navigation }) => {
       console.error("Error:", error.message);
     }
   };
-  
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View
@@ -152,7 +155,7 @@ const Pai = ({ navigation }) => {
                 </SelectDragIndicatorWrapper>
                 <SelectItem label="Sakit" value="sakit" />
                 <SelectItem label="Hadir" value="hadir" />
-                <SelectItem label="izin" />
+                <SelectItem label="izin" value="izin" />
               </SelectContent>
             </SelectPortal>
           </Select>

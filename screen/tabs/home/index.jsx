@@ -75,12 +75,12 @@ const styles = StyleSheet.create({
 });
 
 const Home = ({navigation}) => {
-  const { nama } = useAuth();
+  const { name } = useAuth();
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container2}>
-        <Text style={styles.name}>HI, {nama}</Text>
+        <Text style={styles.name}>HI, {name}</Text>
         <Text style={styles.textinformation}>
           Welcome to Mobile Application student absence SMK Bakti Idhata
         </Text>

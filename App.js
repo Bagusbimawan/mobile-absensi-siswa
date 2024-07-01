@@ -1,14 +1,15 @@
-import { View, Text } from "react-native";
 import React from "react";
-import Navigation from "./navigartions";
 import { GluestackUIProvider } from "@gluestack-ui/themed";
-import { config } from "@gluestack-ui/config"; 
+import { config } from "@gluestack-ui/config";
+import { StatusBar } from "expo-status-bar";
+import MyNavigation from "./navigartions";
 
 const App = () => {
   return (
     <>
+      <StatusBar style="auto" />
       <GluestackUIProvider config={config}>
-        <Navigation />
+      <MyNavigation/>
       </GluestackUIProvider>
     </>
   );

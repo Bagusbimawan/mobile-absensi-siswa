@@ -8,6 +8,8 @@ import {
 } from "@expo/vector-icons";
 import { Platform } from "react-native";
 import Absent from "../screen/tabs/absent";
+import History from "../screen/history";
+import { FontAwesome5 } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
@@ -44,7 +46,13 @@ const Tabs = () => {
           component={Home}
           options={{
             headerShown: false,
-            tabBarIcon: ({focused}) => <MaterialIcons name="home" size={32} color={focused ? "#6A6868" :"#D0CBCB"} />,
+            tabBarIcon: ({ focused }) => (
+              <MaterialIcons
+                name="home"
+                size={32}
+                color={focused ? "#6A6868" : "#D0CBCB"}
+              />
+            ),
           }}
         />
         <Tab.Screen
@@ -52,8 +60,26 @@ const Tabs = () => {
           component={Absent}
           options={{
             headerShown: false,
-            tabBarIcon: ({focused}) => (
-              <MaterialCommunityIcons name="account" size={26} color={focused ? "#6A6868" : "#D0CBCB"}/>
+            tabBarIcon: ({ focused }) => (
+              <MaterialCommunityIcons
+                name="account"
+                size={26}
+                color={focused ? "#6A6868" : "#D0CBCB"}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="History"
+          component={History}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <MaterialCommunityIcons
+                name="history"
+                size={26}
+                color={focused ? "#6A6868" : "#D0CBCB"}
+              />
             ),
           }}
         />

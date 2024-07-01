@@ -6,17 +6,17 @@ export const useAuth = create((set) => ({
   isAuthenticated: false,
   user: null,
   error: null,
-  nama:"",
+  name:"",
   login: async (username, password) => {
     try {
-      const response = await axios.post("http://192.168.43.223:3000/login", {
+      const response = await axios.post("https://supabase-test-flame.vercel.app/login", {
         username,
         password,
       });
 
       if (response.status === 200) {
         const { user } = response.data;
-        set({ isAuthenticated: true, user, error: null, nama:user.nama});
+        set({ isAuthenticated: true, user, error: null, name: user.name});
       } else {
         set({ error: response.data.message });
         console.log("Login gagal:", response.data.message);

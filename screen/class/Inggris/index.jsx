@@ -39,7 +39,7 @@ const Ingriss = ({ navigation }) => {
 
   const handlePress = async () => {
     try {
-      const response = await axios.post("http://192.168.43.223:3000/inggris", {
+      const response = await axios.post("https://supabase-test-flame.vercel.app/inggris", {
         materi,
         status,
         summary,
@@ -155,7 +155,7 @@ const Ingriss = ({ navigation }) => {
                   </SelectDragIndicatorWrapper>
                   <SelectItem label="Sakit" value="ux" />
                   <SelectItem label="Hadir" value="web" />
-                  <SelectItem label="izin" />
+                  <SelectItem label="izin" value="izin"/>
                 </SelectContent>
               </SelectPortal>
             </Select>

@@ -52,18 +52,18 @@ const styles = StyleSheet.create({
 });
 
 const Registration = ({ navigation }) => {
-  const [nama, setNama] = useState("");
+  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post("http://192.168.43.223:3000/register", {
+      const response = await axios.post("https://supabase-test-flame.vercel.app/register", {
         username,
         password,
-        nama,
+        name,
       });
-      setNama("");
+      setName("");
       setUsername("");
       setPassword("");
       if (response.status === 200) {
@@ -91,11 +91,11 @@ const Registration = ({ navigation }) => {
         <View>
           <Input w={wp("70%")} variant="underlined" ml={50} mt={50}>
             <InputField
-              placeholder="Nama"
+              placeholder="Name"
               color="#0F2B8F"
               fontSize={17}
-              onChangeText={setNama}
-              value={nama}
+              onChangeText={setName}
+              value={name}
             />
           </Input>
           <Input w={wp("70%")} variant="underlined" ml={50} mt={50}>

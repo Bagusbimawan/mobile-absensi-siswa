@@ -39,7 +39,7 @@ const RPL = ({ navigation }) => {
 
   const handlePress = async () => {
     try {
-      const response = await axios.post("http://192.168.43.223:3000/rpl", {
+      const response = await axios.post("https://supabase-test-flame.vercel.app/rpl", {
         materi,
         status,
         summary

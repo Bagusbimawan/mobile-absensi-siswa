@@ -14,7 +14,7 @@ import Splash from "../screen/splash";
 
 const Stack = createNativeStackNavigator();
 
-const Navigation = () => {
+const MyNavigation = () => {
   const { isAuthenticated } = useAuth();
 
   return (
@@ -71,4 +71,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default MyNavigation;

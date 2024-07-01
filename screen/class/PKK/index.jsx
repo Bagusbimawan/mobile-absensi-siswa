@@ -3,8 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { jadwal } from "../../../data/jadwal";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import axios from "axios"; // Pastikan axios sudah diimpor
-
+import axios from "axios";
 import {
   Input,
   InputField,
@@ -40,7 +39,7 @@ const Pkk = ({ navigation }) => {
 
   const handlePress = async () => {
     try {
-      const response = await axios.post("http://192.168.43.223:3000/pkk", {
+      const response = await axios.post("https://supabase-test-flame.vercel.app/pkk", {
         materi,
         status,
         summary,
@@ -156,7 +155,7 @@ const Pkk = ({ navigation }) => {
                   </SelectDragIndicatorWrapper>
                   <SelectItem label="Sakit" value="ux" />
                   <SelectItem label="Hadir" value="web" />
-                  <SelectItem label="izin" />
+                  <SelectItem label="izin" value="izin" />
                 </SelectContent>
               </SelectPortal>
             </Select>
