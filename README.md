@@ -73,7 +73,8 @@ We welcome contributions from anyone. If you want to contribute, please fork thi
 
 ## Contact
 
-If you have any questions or suggestions, please contact us at bagusbimawansembodo@gmail.com / 0813-9371-6190
+If you have any questions or suggestions, please contact us at bagusbimawansembodo@gmail.com / 0878-5665-3023
+
 
 ---
 
